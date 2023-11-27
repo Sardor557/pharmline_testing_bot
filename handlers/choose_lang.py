@@ -21,4 +21,4 @@ async def get_language(message: types.Message, state: FSMContext):
         return
 
     await state.update_data({"lg": lg})
-    return login_action(chat_id, lg)
+    return await login_action(chat_id, lg)

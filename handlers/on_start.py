@@ -12,14 +12,14 @@ from utils.http_request import is_user_registered
 async def start(message: types.Message, state):
     chat_id = message.from_user.id
 
-    is_reg = is_user_registered(chat_id)
+    is_reg = await is_user_registered(chat_id)
     print(is_reg)
     if is_reg:
         return await on_main_menu(message, state)
 
     await message.answer('Выберите язык,\n'
                          'Tilni tanlang,\n'
-                         'Choose language', reply_markup=await select_lang_btn())
+                         'Choose language', reply_markup=select_lang_btn())
     await Conditions.choose_lang.set()
 
 
