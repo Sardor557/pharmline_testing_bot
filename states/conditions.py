@@ -7,4 +7,5 @@ class Conditions(StatesGroup):
     request_password = State()
     main_menu_state = State()
     questions = State()
+    testing = State()
 

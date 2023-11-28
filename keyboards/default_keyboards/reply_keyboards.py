@@ -1,6 +1,9 @@
+from typing import List
+
 from aiogram import types
 
 from data.config import _
+from models.ViDrug import ViDrug
 
 
 def back_button(lg):
@@ -49,3 +52,8 @@ def main_menu_btn(lg):
     questions = types.KeyboardButton(_("📋 Список вопросов", locale=lg))
     settings = types.KeyboardButton(_("🛠 Настройки", locale=lg))
     return keyboard.add(questions, settings)
+
+
+def drugs_btn(drugs: List[ViDrug]):
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    return keyboard.add(*[drug.name for drug in drugs])

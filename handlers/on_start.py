@@ -1,21 +1,23 @@
 from aiogram import types
+from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import CommandStart
 
-from handlers.main_menu import on_main_menu
+from utils.on_action import main_menu_action
 from loader import dp
 from keyboards.default_keyboards.reply_keyboards import select_lang_btn
 from states import Conditions
-from utils.http_request import is_user_registered
+from utils.http_request import is_user_registered_async
 
 
 @dp.message_handler(CommandStart(), state='*', chat_type=[types.ChatType.PRIVATE])
-async def start(message: types.Message, state):
+async def start(message: types.Message, state: FSMContext):
     chat_id = message.from_user.id
 
-    is_reg = await is_user_registered(chat_id)
+    is_reg = await is_user_registered_async(chat_id)
     print(is_reg)
     if is_reg:
-        return await on_main_menu(message, state)
+        data = await state.get_data()
+        return await main_menu_action(chat_id, data['lg'])
 
     await message.answer('Выберите язык,\n'
                          'Tilni tanlang,\n'

@@ -3,10 +3,9 @@ from aiogram.dispatcher import FSMContext
 
 from loader import dp
 from models.AuthorizationModel import AuthorizationModel
-from models.viEmployee import ViEmployee
 from states import Conditions
-from utils.http_request import authorize
-from utils.on_action import password_action
+from utils.http_request import authorize_async
+from utils.on_action import password_action, main_menu_action
 
 
 @dp.message_handler(state=Conditions.request_contact, content_types=['contact'])
@@ -24,14 +23,25 @@ async def get_contact(message: types.Message, state: FSMContext):
 @dp.message_handler(state=Conditions.request_password)
 async def get_password(message: types.Message, state: FSMContext):
     password = message.text
+    chat_id = message.from_user.id
+
     data = await state.get_data()
     model = AuthorizationModel(
         phone=data['phone'],
         password=password,
-        telegramId=message.from_user.id,
+        telegramId=chat_id,
         lang=data['lg']
     )
 
-    res = await authorize(model)
+    res = await authorize_async(model)
+    if not res.isSuccess:
+        return await message.answer(res.message)
 
-    await Conditions.questions.set()
+    update = {
+        'id': res.data.id,
+        'telegramId': res.data.telegramId,
+        'token': res.data.token,
+    }
+    await state.update_data(update)
+    await main_menu_action(chat_id, data['lg'])
+    await Conditions.main_menu_state.set()
