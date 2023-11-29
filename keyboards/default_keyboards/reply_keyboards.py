@@ -41,9 +41,8 @@ def request_contact_btn(lg):
 def settings_btn(lg):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     change_lang = types.KeyboardButton(_('🇷🇺Изменить язык', locale=lg))
-    back = types.KeyboardButton(_('⬅Назад', locale=lg))
 
-    keyboard.add(change_lang, back)
+    keyboard.add(change_lang, back_button(lg))
     return keyboard
 
 
@@ -54,6 +53,8 @@ def main_menu_btn(lg):
     return keyboard.add(questions, settings)
 
 
-def drugs_btn(drugs: List[ViDrug]):
+def drugs_btn(drugs: List[ViDrug], lg):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-    return keyboard.add(*[drug.name for drug in drugs])
+    keyboard.add(*[drug.name for drug in drugs])
+    keyboard.add(back_button(lg))
+    return keyboard

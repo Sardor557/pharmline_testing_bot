@@ -27,7 +27,7 @@ def variants_btn(options: List[ViOption], lg, choose_option: dict = None):
         action='next',
         variant='none',
         optionId=0,
-        questionId=0
+        questionId=choose_option['questionId'] if choose_option is not None else 0
     ))
     keyboard.add(next)
     return keyboard

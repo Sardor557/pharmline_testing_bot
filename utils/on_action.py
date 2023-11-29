@@ -21,4 +21,4 @@ async def password_action(chat_id, lg):
 
 async def main_menu_action(chat_id, lg):
     await bot.send_message(chat_id, _("Хотите пройти тестирование?", locale=lg), reply_markup=main_menu_btn(lg))
-    await Conditions.questions.set()
+    await Conditions.main_menu_state.set()

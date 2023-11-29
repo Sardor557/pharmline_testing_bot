@@ -12,12 +12,13 @@ from utils.http_request import is_user_registered_async
 @dp.message_handler(CommandStart(), state='*', chat_type=[types.ChatType.PRIVATE])
 async def start(message: types.Message, state: FSMContext):
     chat_id = message.from_user.id
+    cache = await state.get_data()
 
-    is_reg = await is_user_registered_async(chat_id)
-    print(is_reg)
-    if is_reg:
-        data = await state.get_data()
-        return await main_menu_action(chat_id, data['lg'])
+    if cache.get('token'):
+        is_reg = await is_user_registered_async(chat_id, cache['token'])
+        if is_reg:
+            data = await state.get_data()
+            return await main_menu_action(chat_id, data['lg'])
 
     await message.answer('Выберите язык,\n'
                          'Tilni tanlang,\n'

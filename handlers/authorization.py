@@ -38,7 +38,7 @@ async def get_password(message: types.Message, state: FSMContext):
         return await message.answer(res.message)
 
     update = {
-        'id': res.data.id,
+        'employeeId': res.data.id,
         'telegramId': res.data.telegramId,
         'token': res.data.token,
     }
