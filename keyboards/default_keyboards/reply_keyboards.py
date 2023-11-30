@@ -13,13 +13,12 @@ def back_button(lg):
 def lang_only_btn():
     russian = types.KeyboardButton('Русский🇷🇺')
     uzbek = types.KeyboardButton("O'zbek🇺🇿")
-    english = types.KeyboardButton("English🏴󠁧󠁢󠁥󠁮󠁧󠁿")
 
-    return russian, uzbek, english
+    return russian, uzbek
 
 
 def select_lang_btn():
-    keyboards = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+    keyboards = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     langs = [lang['text'] for lang in lang_only_btn()]
     return keyboards.add(*langs)
 
