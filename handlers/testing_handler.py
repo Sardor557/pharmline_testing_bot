@@ -20,7 +20,7 @@ async def on_message(message: types.Message, state: FSMContext):
     lg = cache['lg']
 
     if msg == _('⬅Назад', locale=lg):
-        return main_menu_action(chat_id, lg)
+        return await main_menu_action(chat_id, lg)
 
 
 @dp.callback_query_handler(question_filter.filter(), state=Conditions.testing)
@@ -36,15 +36,18 @@ async def choose_answer(call: types.CallbackQuery, callback_data: dict, state: F
                           questionId=question_id,
                           optionId=callback_data['optionId'])
 
-        await state.update_data({'currentQuestion': answer.questionId})
+        await state.update_data(
+            {
+                'currentQuestion': answer.questionId,
+                'answer': answer.__dict__
+            })
         question = await get_current_question_async(token, question_id)
         choose = {
             callback_data['variant']: callback_data['optionId'],
             'questionId': answer.questionId
                   }
-        await state.update_data({'answer': answer.__dict__})
         return await call.message.edit_reply_markup(reply_markup=variants_btn(question.data.options, lg, choose))
-    cache = await state.get_data()
+    # cache = await state.get_data()
 
     if not cache.get('currentQuestion'):
         return await call.answer(_("Выберите вариант ответа", locale=lg), show_alert=True)
