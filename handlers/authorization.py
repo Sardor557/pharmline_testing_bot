@@ -12,6 +12,8 @@ from utils.on_action import password_action, main_menu_action
 async def get_contact(message: types.Message, state: FSMContext):
     phone = message.contact.phone_number
     chat_id = message.from_user.id
+    if not phone.startswith("+"):
+        phone = "+" + phone
 
     lg = await state.get_data()
     lg = lg['lg']
