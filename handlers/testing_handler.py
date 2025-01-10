@@ -47,7 +47,6 @@ async def choose_answer(call: types.CallbackQuery, callback_data: dict, state: F
             'questionId': answer.questionId
                   }
         return await call.message.edit_reply_markup(reply_markup=variants_btn(question.data.options, lg, choose))
-    # cache = await state.get_data()
 
     if not cache.get('currentQuestion'):
         return await call.answer(_("Выберите вариант ответа", locale=lg), show_alert=True)
