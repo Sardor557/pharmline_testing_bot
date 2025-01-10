@@ -33,6 +33,6 @@ async def drug_questions(message: types.Message, state: FSMContext):
         return await message.answer(question.message)
     question_data: ViQuestion = question.data
 
-    await message.answer(msg, reply_markup=types.ReplyKeyboardMarkup(resize_keyboard=True).add(back_button(data['lg'])))
-    await message.answer(question.data.context, reply_markup=variants_btn(question_data.options, data['lg']))
+    await message.answer(msg, reply_markup=types.ReplyKeyboardMarkup(resize_keyboard=True).add(back_button(lg)))
+    await message.answer(question.data.context, reply_markup=variants_btn(question_data.options, lg))
     await Conditions.testing.set()
