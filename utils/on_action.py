@@ -8,7 +8,8 @@ from states import Conditions
 
 
 async def login_action(chat_id, lg):
-    text = f"Пройдите авторизация.\nДля начала отправьте свой номер нажав на кнопу {hbold('Отправить номер📱')}"
+    send_phone = hbold(_('Отправить номер📱', locale=lg))
+    text = _("Пройдите авторизацию. Для начала отправьте свой номер нажав на кнопку ", locale=lg) + send_phone
     await bot.send_message(chat_id, _(text, locale=lg), reply_markup=request_contact_btn(lg))
     await Conditions.request_contact.set()
 

@@ -1,0 +1,64 @@
+# Translations template for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-12-19 09:59+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: handlers/choose_drug.py:20 handlers/testing_handler.py:22
+#: keyboards/default_keyboards/reply_keyboards.py:10
+msgid "⬅Назад"
+msgstr ""
+
+#: handlers/main_menu.py:17 keyboards/default_keyboards/reply_keyboards.py:50
+msgid "📋 Список вопросов"
+msgstr ""
+
+#: handlers/main_menu.py:19
+msgid "Выберите препарат по которому вы хотите пройти тестирование"
+msgstr ""
+
+#: handlers/testing_handler.py:50 handlers/testing_handler.py:54
+msgid "Выберите вариант ответа"
+msgstr ""
+
+#: keyboards/default_keyboards/reply_keyboards.py:35 utils/on_action.py:11
+msgid "Отправить номер📱"
+msgstr ""
+
+#: keyboards/default_keyboards/reply_keyboards.py:42
+msgid "🇷🇺Изменить язык"
+msgstr ""
+
+#: keyboards/default_keyboards/reply_keyboards.py:51
+msgid "🛠 Настройки"
+msgstr ""
+
+#: keyboards/inline_keyboards/inline_buttons.py:26
+msgid "Далее"
+msgstr ""
+
+#: utils/on_action.py:12
+msgid "Пройдите авторизацию. Для начала отправьте свой номер нажав на кнопку "
+msgstr ""
+
+#: utils/on_action.py:18
+msgid "Теперь введите пароль. Если вы не знаете свой пароль, позвоните в офис"
+msgstr ""
+
+#: utils/on_action.py:24
+msgid "Хотите пройти тестирование?"
+msgstr ""
+
